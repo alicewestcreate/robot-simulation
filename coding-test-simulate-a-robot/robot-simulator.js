@@ -1,37 +1,16 @@
 class Robot {
-    constructor(x, y, bearing, manover) {
-        this.x = x;
-        this.y = y;
-        this.bearing = bearing
-        this.manover = manover
-        this.execute(manover)
-
-
+    constructor() {
     }
 
-    execute(manover) {
-        console.log(manover);
-    }
-
-    advance(){
-        // Move forward in the current direction 
-        
-    }
-
-    turnRight() {
-        // Turn clockwise
-
-    }
-
-    turnLeft() {
-        // Turn anticlock wise 
-
+    execute(command) {
+        const commandSplit = command.split(" ")
+        const [ x, y, bearing, manuover] = commandSplit
+        console.log(commandSplit);
+        console.log(x, y, bearing, manuover);
     }
 
 }
 
 
-
-const robot = new Robot(7, 3, "West", "e")
-
-console.log(robot);
+const robot = new Robot()
+robot.execute("0 0 North FFASD")
