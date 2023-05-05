@@ -1,36 +1,26 @@
 class Robot {
-  constructor() {
-  }
 
   execute(command) {
-    // Break down command
+    // Split command, and deconstruct the items
     const commandSplit = command.split(" ");
     const [x, y, bearing, manuover] = commandSplit;
 
-    console.log("1.", x, y, bearing, manuover);
-
-    const newPlace = this.makeManuover(x, y, bearing, manuover);
-    const response = String(newPlace).replaceAll(",", " ")
-    return response
+    // Call makeManuover function to get newPostion
+    const newPosition = this.makeManuover(x, y, bearing, manuover);
+    return String(newPosition).replaceAll(",", " ")
 
   }
 
   makeManuover(x, y, bearing, manuover) {
-    console.log("2.", x, y, bearing, manuover);
-
-    const manuoverSplit = manuover.split("");
-    console.log("3", manuoverSplit);
-
-    let coOrd = [parseInt(x), parseInt(y)];
-    console.log("4", coOrd);
+    // This takes the current coordinates and bearing and makes a manuover based on the instructions
+    const manuoverSplit = manuover.split(""); // Spliting each manuover character into an array of individual moves. 
+    let coOrd = [parseInt(x), parseInt(y)]; // converting to coordinates into integers
 
     manuoverSplit.forEach((move) => {
-      console.log("5", move);
+      // For each individual move, run the corrosponding method
       switch (move) {
         case "A":
-          console.log("A", coOrd);
           coOrd = this.advance(coOrd, bearing);
-          console.log("B", coOrd);
           break
         case "L":
           bearing = this.anticlockwise(bearing);
@@ -43,10 +33,13 @@ class Robot {
       }
 
     });
+    // spread the coOrd array, and return with bearing at same level. 
     return [...coOrd, bearing]
   }
 
+
   advance(coOrd, bearing) {
+    // This takes the current coordinates and depending on bearing will manuover one space along the x or y axis 
     let [x, y] = coOrd
     switch (bearing) {
       case "NORTH":
@@ -69,24 +62,19 @@ class Robot {
   }
 
   anticlockwise(bearing) {
-    console.log("TurnLeft");
-
+      // This takes the current bearing and turns left, taking the next directional postion in an antu clockwise direction  
     switch (bearing) {
       case "NORTH":
         bearing = "WEST";
-        console.log("Left", bearing);
         break;
       case "WEST":
         bearing = "SOUTH";
-        console.log("Left", bearing);
         break;
       case "SOUTH":
         bearing = "EAST";
-        console.log("Left", bearing);
         break;
       case "EAST":
         bearing = "NORTH";
-        console.log("Left", bearing);
         break;
       default:
         break;
@@ -94,9 +82,9 @@ class Robot {
     return bearing;
   }
 
-  clockwise(bearing) {
-    console.log("TurnRight");
 
+  clockwise(bearing) {
+    // This takes the current bearing  and turns right, taking the next directional postion in a clockwise direction  
     switch (bearing) {
       case "NORTH":
         bearing = "EAST";
@@ -116,11 +104,6 @@ class Robot {
     return bearing;
   }
 }
-
-
-// const robot = new Robot();
-// robot.execute("0 0 NORTH A");
-// robot.execute("0 0 NORTH AAAALAAAALAAAALAAAAL")
 
 
 module.exports = Robot;
