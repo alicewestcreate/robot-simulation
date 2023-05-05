@@ -1,0 +1,22 @@
+{
+  "name": "robot-simulation",
+  "version": "1.0.0",
+  "description": "Write a program that simulates the movements of a robot. The robot can have three possible movements:",
+  "main": "robot-simulator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alicewestcreate/robot-simulation.git"
+  },
+  "author": "Alice West",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alicewestcreate/robot-simulation/issues"
+  },
+  "homepage": "https://github.com/alicewestcreate/robot-simulation#readme",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
